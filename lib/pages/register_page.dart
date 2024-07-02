@@ -57,6 +57,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 const Expanded(
                   child: TextField(
                     decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
                       hintText: 'Search for treatments',
                       prefixIcon: Icon(Icons.search),
                     ),
@@ -64,10 +69,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(width: 8),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(15),
+                    backgroundColor: AppColors.primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
                   onPressed: () {
                     // Perform search functionality
                   },
-                  child: const Text('Search'),
+                  child: const Text(
+                    'Search',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
@@ -77,20 +92,31 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Sort by:'),
-                DropdownButton<String>(
-                  value: _sortBy,
-                  items: ['Date', 'Therapist'].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      _sortBy = newValue!;
-                    });
-                  },
+                const Text(
+                  'Sort by:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: DropdownButton<String>(
+                    value: _sortBy,
+                    items: ['Date', 'Therapist'].map((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        _sortBy = newValue!;
+                      });
+                    },
+                  ),
                 ),
               ],
             ),
@@ -117,31 +143,54 @@ class _RegisterPageState extends State<RegisterPage> {
                   child: ListTile(
                     leading: const Icon(Icons.person),
                     title: Text(
-                      ' ${index + 1}  ${_items[index]['title']}',
+                      ' ${index + 1}${"."}  ${_items[index]['title']}',
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(_items[index]['subtitle']),
+                        Text(
+                          _items[index]['subtitle'],
+                          style: TextStyle(
+                              color: Colors.green[400],
+                              fontWeight: FontWeight.bold),
+                        ),
                         const SizedBox(height: 4),
                         Row(
                           children: [
-                            const Icon(Icons.calendar_today),
+                            const Icon(
+                              Icons.calendar_month_outlined,
+                              color: Colors.red,
+                            ),
                             const SizedBox(width: 4),
                             Text(_items[index]['date']),
                             const SizedBox(width: 16),
-                            const Icon(Icons.person),
+                            const Icon(
+                              Icons.people_alt_outlined,
+                              color: Colors.red,
+                            ),
                             const SizedBox(width: 4),
                             Text(_items[index]['therapist']),
                           ],
                         ),
+                        const Divider(color: Colors.grey, height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              "view booking details",
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.arrow_forward_ios_sharp,
+                                  color: Colors.green,
+                                ))
+                          ],
+                        )
                       ],
                     ),
-                    trailing: const Icon(Icons.arrow_forward),
-                    onTap: () {
-                      // Handle item tap
-                    },
                   ),
                 );
               },
