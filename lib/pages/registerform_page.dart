@@ -1,4 +1,6 @@
+import 'package:ayurr/constant.dart';
 import 'package:ayurr/providers/genderCounter.dart';
+import 'package:ayurr/screens/popup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -138,59 +140,19 @@ class RegForm extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                // Container(
-                //   decoration: BoxDecoration(
-                //     border: Border.all(color: Colors.grey),
-                //     borderRadius: BorderRadius.circular(8),
-                //   ),
-                //   padding: const EdgeInsets.all(16),
-                //   child: Row(
-                //     children: [
-                //       const Text(
-                //         '1.',
-                //         style: TextStyle(
-                //           fontSize: 16,
-                //         ),
-                //       ),
-                //       const SizedBox(width: 8),
-                //       const Expanded(
-                //         child: TextField(
-                //           decoration: InputDecoration(
-                //             border: InputBorder.none,
-                //           ),
-                //         ),
-                //       ),
-                //       IconButton(
-                //         icon: const Icon(Icons.close),
-                //         onPressed: () {},
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 const SizedBox(height: 8),
                 Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 240, 235, 235),
+                    color: const Color.fromARGB(255, 240, 235, 235),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Column(
                     children: [
                       Row(
                         children: [
-                          const Text(
-                            '1.',
-                            style: TextStyle(
-                              fontSize: 16,
-                            ),
-                          ),
                           const SizedBox(width: 8),
                           const Expanded(
-                            child: TextField(
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                              ),
-                            ),
-                          ),
+                              child: Text("to implement treatment provider")),
                           IconButton(
                             icon: const Icon(Icons.close),
                             onPressed: () {},
@@ -200,10 +162,66 @@ class RegForm extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text(
-                              'Male:    ${context.watch<GenderProvider>().male.toString()} '),
-                          Text(
-                              'female:   ${context.watch<GenderProvider>().female.toString()} '),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Male : ",
+                                    style: TextStyle(
+                                        color: AppColors.fontColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: const Color.fromARGB(
+                                            73, 158, 158, 158)),
+                                    padding: const EdgeInsets.all(8),
+                                    child: Text(
+                                      context
+                                          .watch<GenderProvider>()
+                                          .male
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "Female : ",
+                                    style: TextStyle(
+                                        color: AppColors.fontColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: const Color.fromARGB(
+                                            73, 158, 158, 158)),
+                                    padding: const EdgeInsets.all(8),
+                                    child: Text(
+                                      context
+                                          .watch<GenderProvider>()
+                                          .female
+                                          .toString(),
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                           IconButton(
                             icon: const Icon(Icons.edit),
                             onPressed: () {},
@@ -214,17 +232,33 @@ class RegForm extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
-                  child: const Text(
-                    '+ Add Treatments',
-                    style: TextStyle(
-                      color: Colors.white,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const PopupScreen();
+                          },
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.all(15),
+                        backgroundColor: AppColors.primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text(
+                        '+ Add Treatments',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ],
             ),

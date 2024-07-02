@@ -17,10 +17,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (ctx) => GenderProvider()),
       ],
       child: MaterialApp(
-        home: RegForm(
-          male: GenderProvider().male,
-          female: GenderProvider().female,
-        ),
+        home: LoginPage(),
       ),
     );
   }
