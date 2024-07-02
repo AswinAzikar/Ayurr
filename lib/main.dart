@@ -14,10 +14,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => GenderProvider()),
+        ChangeNotifierProvider(create: (ctx) => GenderProvider()),
       ],
       child: MaterialApp(
-        home: RegForm(),
+        home: RegForm(
+          male: GenderProvider().male,
+          female: GenderProvider().female,
+        ),
       ),
     );
   }

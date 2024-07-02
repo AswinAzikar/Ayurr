@@ -1,34 +1,32 @@
 import 'package:flutter/material.dart';
 
 class GenderProvider extends ChangeNotifier {
-  int male, female;
+  int _male = 0;
+  int _female = 0;
 
-  GenderProvider({this.male = 0, this.female = 0});
+  int get male => _male;
+  int get female => _female;
 
-  void maleincrementCounter() {
-    male++;
+  void incrementMale() {
+    _male++;
     notifyListeners();
   }
 
-  void femaleincrementCounter() {
-    female++;
+  void incrementFemale() {
+    _female++;
     notifyListeners();
   }
 
-  void maledecrementCounter() {
-    if (male > 0) {
-      male--;
-    } else {
-      male = 0;
+  void decrementMale() {
+    if (_male > 0) {
+      _male--;
     }
     notifyListeners();
   }
 
-  void femaledecrementCounter() {
-    if (female > 0) {
-      female--;
-    } else {
-      female = 0;
+  void decrementFemale() {
+    if (_female > 0) {
+      _female--;
     }
     notifyListeners();
   }

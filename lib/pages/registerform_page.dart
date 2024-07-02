@@ -1,6 +1,12 @@
+import 'package:ayurr/providers/genderCounter.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegForm extends StatelessWidget {
+  final int male;
+  final int female;
+  const RegForm({super.key, required this.male, required this.female});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -132,54 +138,80 @@ class RegForm extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
+                // Container(
+                //   decoration: BoxDecoration(
+                //     border: Border.all(color: Colors.grey),
+                //     borderRadius: BorderRadius.circular(8),
+                //   ),
+                //   padding: const EdgeInsets.all(16),
+                //   child: Row(
+                //     children: [
+                //       const Text(
+                //         '1.',
+                //         style: TextStyle(
+                //           fontSize: 16,
+                //         ),
+                //       ),
+                //       const SizedBox(width: 8),
+                //       const Expanded(
+                //         child: TextField(
+                //           decoration: InputDecoration(
+                //             border: InputBorder.none,
+                //           ),
+                //         ),
+                //       ),
+                //       IconButton(
+                //         icon: const Icon(Icons.close),
+                //         onPressed: () {},
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                const SizedBox(height: 8),
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
+                    color: Color.fromARGB(255, 240, 235, 235),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
+                  child: Column(
                     children: [
-                      const Text(
-                        '1.',
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      const Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
+                      Row(
+                        children: [
+                          const Text(
+                            '1.',
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
                           ),
-                        ),
+                          const SizedBox(width: 8),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () {},
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                              'Male:    ${context.watch<GenderProvider>().male.toString()} '),
+                          Text(
+                              'female:   ${context.watch<GenderProvider>().female.toString()} '),
+                          IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () {},
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Male'),
-                    ),
-                    const Text('2'),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Text('Female'),
-                    ),
-                    const Text('2'),
-                    IconButton(
-                      icon: const Icon(Icons.edit),
-                      onPressed: () {},
-                    ),
-                  ],
                 ),
                 const SizedBox(height: 16),
                 ElevatedButton(
