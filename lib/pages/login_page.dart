@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
 
     _formKey.currentState?.save(); // Save form fields
 
-    final url = Uri.parse('https://your-correct-api-url.com/api/Login');
+    final url = Uri.parse('https://flutter-amr.noviindus.in/api/Login');
 
     try {
       setState(() {
@@ -32,12 +32,12 @@ class _LoginPageState extends State<LoginPage> {
       final response = await http.post(
         url,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: jsonEncode({
+        body: {
           'username': _email,
           'password': _password,
-        }),
+        },
       );
 
       if (response.statusCode == 200) {
@@ -46,10 +46,8 @@ class _LoginPageState extends State<LoginPage> {
         final token = data['token'];
         print('Login successful: $token');
 
-        // Clear form fields after successful login
         _formKey.currentState?.reset();
 
-        // Navigate to the next page (e.g., RegisterPage)
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => RegisterPage()),
