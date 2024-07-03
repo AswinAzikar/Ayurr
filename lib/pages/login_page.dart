@@ -34,10 +34,8 @@ class _LoginPageState extends State<LoginPage> {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: {
-          'username': _email,
-          'password': _password,
-        },
+        body:
+            'username=${Uri.encodeComponent(_email)}&password=${Uri.encodeComponent(_password)}',
       );
 
       if (response.statusCode == 200) {
