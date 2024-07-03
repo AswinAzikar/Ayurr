@@ -17,7 +17,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<bool> _login() async {
     if (!_formKey.currentState!.validate()) {
-      return false; // Form is not valid, do not proceed with login
+      return false;
     }
 
     _formKey.currentState?.save(); // Save form fields
@@ -45,12 +45,6 @@ class _LoginPageState extends State<LoginPage> {
         print('Login successful: $token');
 
         _formKey.currentState?.reset();
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => RegisterPage()),
-        );
-
         return true;
       } else if (response.statusCode == 401) {
         // Invalid credentials
