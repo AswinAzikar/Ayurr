@@ -1,5 +1,4 @@
 import 'package:ayurr/pages/login_page.dart';
-import 'package:ayurr/pages/registerform_page.dart';
 import 'package:ayurr/providers/genderCounter.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
