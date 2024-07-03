@@ -176,7 +176,18 @@ class _LoginPageState extends State<LoginPage> {
                                                 BorderRadius.circular(10),
                                           ),
                                         ),
-                                        onPressed: _login,
+                                        onPressed: () async {
+                                          bool loginSuccess = await _login();
+                                          if (loginSuccess) {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    RegisterPage(),
+                                              ),
+                                            );
+                                          }
+                                        },
                                         child: const Text(
                                           'Login',
                                           style: TextStyle(
