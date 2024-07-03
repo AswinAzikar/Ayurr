@@ -32,12 +32,12 @@ class _LoginPageState extends State<LoginPage> {
       final response = await http.post(
         url,
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: jsonEncode({
+        body: {
           'username': _email,
           'password': _password,
-        }),
+        },
       );
 
       if (response.statusCode == 200) {
